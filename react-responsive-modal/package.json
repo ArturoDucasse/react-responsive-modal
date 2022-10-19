@@ -1,6 +1,6 @@
 {
   "name": "react-responsive-modal",
-  "version": "6.1.0",
+  "version": "6.3.0",
   "description": "A simple responsive and accessible react modal",
   "license": "MIT",
   "main": "dist/index.js",
@@ -47,21 +47,21 @@
   "size-limit": [
     {
       "path": "dist/react-responsive-modal.cjs.production.min.js",
-      "limit": "4.0 KB"
+      "limit": "4.1 KB"
     },
     {
       "path": "dist/react-responsive-modal.esm.js",
-      "limit": "4.0 KB"
+      "limit": "4.1 KB"
     }
   ],
   "dependencies": {
-    "@bedrock-layout/use-forwarded-ref": "^1.1.4",
+    "@bedrock-layout/use-forwarded-ref": "^1.3.1",
     "body-scroll-lock": "^3.1.5",
-    "classnames": "^2.2.6"
+    "classnames": "^2.3.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17",
-    "react-dom": "^16.8.0 || ^17"
+    "react": "^16.8.0 || ^17 || ^18",
+    "react-dom": "^16.8.0 || ^17 || ^18"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "4.7.0",

@@ -260,6 +260,26 @@ describe('modal', () => {
       );
       expect(document.body.style.overflow).toBe('');
     });
+    it('should reserve scroll bar gap', () => {
+      const scrollBarWidth = 42;
+      const innerWidth = 500;
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: innerWidth,
+      });
+      Object.defineProperty(document.documentElement, 'clientWidth', {
+        writable: true,
+        configurable: true,
+        value: innerWidth - scrollBarWidth,
+      });
+      render(
+        <Modal open={true} onClose={() => null} reserveScrollBarGap={true}>
+          <div>modal content</div>
+        </Modal>
+      );
+      expect(document.body.style.paddingRight).toBe(`${scrollBarWidth}px`);
+    });
   });
 
   describe('closeIcon', () => {
@@ -480,6 +500,36 @@ describe('modal', () => {
 
       fireEvent.animationEnd(getByTestId('modal'));
       expect(onAnimationEnd).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('prop: containerId', () => {
+    it('should renders container div with id', async () => {
+      const containerId = 'container-id';
+      const { getByTestId } = render(
+        <Modal open onClose={() => null} containerId={containerId}>
+          <div>modal content</div>
+        </Modal>
+      );
+
+      const containerModal = getByTestId('modal-container');
+      expect(containerModal.getAttribute('id')).toBe(containerId);
+      expect(document.getElementById(containerId)).toBeInTheDocument();
+    });
+  });
+
+  describe('prop: modalId', () => {
+    it('should renders modal div with id', async () => {
+      const modalId = 'modal-id';
+      const { getByTestId } = render(
+        <Modal open onClose={() => null} modalId={modalId}>
+          <div>modal content</div>
+        </Modal>
+      );
+
+      const modal = getByTestId('modal');
+      expect(modal.getAttribute('id')).toBe(modalId);
+      expect(document.getElementById(modalId)).toBeInTheDocument();
     });
   });
 });
